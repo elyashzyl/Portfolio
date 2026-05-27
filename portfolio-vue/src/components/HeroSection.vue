@@ -74,7 +74,7 @@ onMounted(() => {
 
 const meta = computed(() => [
   { label: 'Based', value: 'Philippines' },
-  { label: 'Local', value: localTime.value },
+  { label: 'PH Time', value: localTime.value },
   { label: 'Status', value: 'Open to work' },
   { label: 'Email', value: 'ely.ashzyl@gmail.com' },
 ])
