@@ -64,12 +64,17 @@ onMounted(() => {
   if (el.value) observer.observe(el.value)
 })
 
-const localTime = ref(new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', hour12: true }))
+const phTime = () => {
+  const now = new Date()
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000
+  const ph = new Date(utc + 8 * 3600000)
+  return ph.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+}
+
+const localTime = ref(phTime())
 
 onMounted(() => {
-  setInterval(() => {
-    localTime.value = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', hour12: true })
-  }, 60000)
+  setInterval(() => { localTime.value = phTime() }, 60000)
 })
 
 const meta = computed(() => [
