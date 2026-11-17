@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">EduPulse dashboard preview</title>
+  <desc id="desc">A warm educational dashboard interface with course progress cards and activity charts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19151f"/><stop offset="1" stop-color="#342044"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ffb347"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="1060" cy="110" r="210" fill="#ffb347" opacity=".08"/>
+  <rect x="54" y="42" width="1092" height="716" rx="24" fill="#15131b" stroke="#ffffff" stroke-opacity=".12"/>
+  <rect x="54" y="42" width="236" height="716" rx="24" fill="#1d1928"/>
+  <text x="92" y="100" fill="#fff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Edu<tspan fill="#ffb347">Pulse</tspan></text>
+  <text x="92" y="147" fill="#a59eaf" font-family="Arial, sans-serif" font-size="13">LEARNING HUB</text>
+  <rect x="82" y="185" width="180" height="48" rx="12" fill="#ffb347"/>
+  <text x="108" y="216" fill="#211826" font-family="Arial, sans-serif" font-size="15" font-weight="700">Dashboard</text>
+  <g fill="#aaa1b7" font-family="Arial, sans-serif" font-size="14">
+    <text x="108" y="278">My courses</text><text x="108" y="330">Assignments</text><text x="108" y="382">Calendar</text><text x="108" y="434">Community</text>
+  </g>
+  <circle cx="101" cy="272" r="5" fill="#ff6b6b"/><circle cx="101" cy="324" r="5" fill="#8c7cff"/><circle cx="101" cy="376" r="5" fill="#5dd6b0"/><circle cx="101" cy="428" r="5" fill="#ffb347"/>
+  <circle cx="170" cy="674" r="30" fill="#ffb347" opacity=".18"/><text x="215" y="669" fill="#fff" font-family="Arial, sans-serif" font-size="13">Alex Morgan</text><text x="215" y="690" fill="#908797" font-family="Arial, sans-serif" font-size="11">Student account</text>
+  <text x="332" y="106" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="700">Good morning, Alex</text><text x="332" y="137" fill="#9d96a5" font-family="Arial, sans-serif" font-size="14">Keep your learning momentum going.</text>
+  <rect x="332" y="178" width="236" height="126" rx="16" fill="#241e2d"/><rect x="586" y="178" width="236" height="126" rx="16" fill="#241e2d"/><rect x="840" y="178" width="258" height="126" rx="16" fill="#241e2d"/>
+  <g font-family="Arial, sans-serif"><text x="356" y="214" fill="#9f96ab" font-size="13">COURSE PROGRESS</text><text x="356" y="264" fill="#fff" font-size="34" font-weight="700">78%</text><text x="466" y="263" fill="#5dd6b0" font-size="13">+12.4%</text><text x="610" y="214" fill="#9f96ab" font-size="13">LESSONS DONE</text><text x="610" y="264" fill="#fff" font-size="34" font-weight="700">24</text><text x="720" y="263" fill="#ffb347" font-size="13">this month</text><text x="864" y="214" fill="#9f96ab" font-size="13">STUDY STREAK</text><text x="864" y="264" fill="#fff" font-size="34" font-weight="700">14 days</text></g>
+  <rect x="332" y="332" width="486" height="336" rx="16" fill="#201b28"/><text x="360" y="375" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700">Weekly activity</text><text x="360" y="400" fill="#908797" font-family="Arial, sans-serif" font-size="12">Hours spent learning</text>
+  <path d="M370 590 C420 530 445 565 485 500 S550 550 590 460 S660 520 700 430 S755 465 790 410" fill="none" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/><path d="M370 590 C420 530 445 565 485 500 S550 550 590 460 S660 520 700 430 S755 465 790 410 L790 620 L370 620Z" fill="#ff9d5c" opacity=".1"/>
+  <g fill="#777080" font-family="Arial, sans-serif" font-size="11"><text x="365" y="645">Mon</text><text x="430" y="645">Tue</text><text x="495" y="645">Wed</text><text x="560" y="645">Thu</text><text x="625" y="645">Fri</text><text x="690" y="645">Sat</text><text x="755" y="645">Sun</text></g>
+  <rect x="840" y="332" width="258" height="336" rx="16" fill="#201b28"/><text x="868" y="375" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="700">Continue learning</text><rect x="868" y="408" width="202" height="88" rx="12" fill="url(#accent)" opacity=".9"/><text x="886" y="443" fill="#261827" font-family="Arial, sans-serif" font-size="12" font-weight="700">UI DESIGN BASICS</text><text x="886" y="468" fill="#261827" font-family="Arial, sans-serif" font-size="17" font-weight="700">Design systems</text><rect x="868" y="526" width="202" height="9" rx="5" fill="#3d3544"/><rect x="868" y="526" width="139" height="9" rx="5" fill="#ffb347"/><text x="868" y="562" fill="#9d96a5" font-family="Arial, sans-serif" font-size="12">Chapter 6 of 9</text>
+</svg>

@@ -72,6 +72,9 @@ const projects = [
   { id: '01', title: 'POS System', year: '2026', meta: 'Kamog Sablan Multipurpose Cooperative', preview: '/KSMPC.png', live: '#' },
   { id: '02', title: 'School System', year: '2025', meta: "San Luis King's Kids Christian Academy", preview: '/SLKKCA.png', live: '#' },
   { id: '03', title: 'Birthing Home System', year: '2026', meta: 'Bani Birthing Home', preview: '/Bani-Birthing-System.png', live: '#' },
+  { id: '04', title: 'EduPulse', year: '2026', meta: 'Learning management platform', preview: '/edupulse-preview.svg', live: 'https://edupulse.koamishin.com' },
+  { id: '05', title: 'ElyTrack', year: '2026', meta: 'Delivery tracking dashboard', preview: '/elytrack-preview.svg', live: 'https://elytrack.elyxstudio.org' },
+  { id: '06', title: 'ELWrite', year: '2026', meta: 'Writing and publishing workspace', preview: '/elwrite-preview.svg', live: 'https://elwrite.elyxstudio.org' },
 ]
 
 onMounted(() => {
