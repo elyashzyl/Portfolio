@@ -23,7 +23,7 @@
         <p class="contact__block-label">Elsewhere</p>
         <ul class="contact__links">
           <li v-for="l in links" :key="l.label">
-            <a :href="l.url" class="contact__link">{{ l.label }} <span>&rarr;</span></a>
+            <a :href="l.url" class="contact__link" target="_blank" rel="noopener noreferrer">{{ l.label }} <span>&rarr;</span></a>
           </li>
         </ul>
       </div>

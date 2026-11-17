@@ -1,5 +1,20 @@
 # Portfolio TODO
 
+## Recommended update: Make the portfolio application-ready
+
+The portfolio now communicates the target role, availability, selected work, and contact path more clearly. The remaining items below require real career information or evidence before they should be added.
+
+- [x] Add a clear target role and value proposition to the hero section.
+- [x] Add a hiring snapshot with role, location, availability, and email.
+- [x] Add `View selected work` and `Start a conversation` calls to action.
+- [x] Improve page title and social/share metadata.
+- [ ] Add a real, up-to-date resume PDF and a visible `Download resume` link.
+- [ ] Add a verified LinkedIn profile link.
+- [ ] Add measurable project outcomes where they are available, such as users served, time saved, or workflow improvements.
+- [ ] Add a short work-history timeline with company/client names, dates, and responsibilities.
+- [ ] Add testimonials or references only with permission.
+- [ ] Run a final keyboard, mobile, link, and performance review before sending applications.
+
 ## Recommended update: Add project case studies
 
 Upgrade the Recent Projects cards into short, interactive case studies. The current previews and live links show what was built, but case studies would better communicate the thinking, responsibilities, and results behind each project.

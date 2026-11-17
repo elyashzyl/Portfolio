@@ -2,12 +2,16 @@
   <div ref="el">
     <div class="hero">
       <div class="hero__text">
-        <p class="hero__eyebrow fade-in" style="transitionDelay: 0s"><span class="hero__eyebrow-dash">&mdash;</span> Designer &amp; Developer</p>
+        <p class="hero__eyebrow fade-in" style="transitionDelay: 0s"><span class="hero__eyebrow-dash">&mdash;</span> Web Developer &amp; Creative Technologist</p>
         <h2 class="hero__name fade-in" style="transitionDelay: 0.08s">Ely</h2>
         <p class="hero__desc fade-in" style="transitionDelay: 0.16s">
-          A multidisciplinary creator working across web development, photography,
-          and graphic design. Every project is an opportunity to tell a story.
+          I build thoughtful web experiences with modern JavaScript, strong visual systems,
+          and a practical focus on solving real problems for people and teams.
         </p>
+        <div class="hero__actions fade-in" style="transitionDelay: 0.24s">
+          <a href="#dev" class="hero__action hero__action--primary">View selected work <span>↓</span></a>
+          <a href="mailto:ely.ashzyl@gmail.com" class="hero__action">Start a conversation <span>↗</span></a>
+        </div>
       </div>
 
       <div class="hero__portrait-col fade-in" :style="{ transitionDelay: '0.24s' }">
@@ -24,12 +28,15 @@
         </div>
       </div>
 
-      <ul class="hero__meta fade-in" style="transitionDelay: 0.32s">
-        <li v-for="m in meta" :key="m.label">
-          <span>{{ m.label }}</span>
-          <em><span v-if="m.label === 'Status'" class="hero__dot" />{{ m.value }}</em>
-        </li>
-      </ul>
+      <div class="hero__meta-wrap fade-in" style="transitionDelay: 0.32s">
+        <span class="hero__meta-heading">Hiring snapshot</span>
+        <ul class="hero__meta">
+          <li v-for="m in meta" :key="m.label">
+            <span>{{ m.label }}</span>
+            <em><span v-if="m.label === 'Status'" class="hero__dot" />{{ m.value }}</em>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="disc-grid">
@@ -78,8 +85,8 @@ onMounted(() => {
 })
 
 const meta = computed(() => [
-  { label: 'Based', value: 'Philippines' },
-  { label: 'PH Time', value: localTime.value },
+  { label: 'Role', value: 'Web Developer' },
+  { label: 'Based', value: 'Philippines · Remote' },
   { label: 'Status', value: 'Open to work' },
   { label: 'Email', value: 'ely.ashzyl@gmail.com' },
 ])
