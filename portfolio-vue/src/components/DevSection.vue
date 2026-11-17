@@ -10,11 +10,32 @@
       </div>
     </div>
 
-    <div style="margin-top: 3rem;">
-      <span class="panel__dock-intro" style="color: rgba(245,158,11,0.3);">Recent Projects</span>
+    <div class="projects-section">
+      <div class="projects-intro fade-in">
+        <div>
+          <span class="panel__dock-intro" style="color: rgba(245,158,11,0.3);">Selected work</span>
+          <h2 class="projects-intro__title">Useful systems,<br /><em>carefully made.</em></h2>
+        </div>
+        <p class="projects-intro__copy">A selection of digital products and operational tools designed to make complex work feel clearer.</p>
+      </div>
+
+      <div class="projects-summary fade-in">
+        <div><strong>06</strong><span>selected projects</span></div>
+        <div><strong>03</strong><span>live products</span></div>
+        <div><strong>03</strong><span>focus areas</span></div>
+      </div>
+
+      <div class="projects-toolbar fade-in">
+        <span class="projects-toolbar__label">Browse by type</span>
+        <div class="project-filters" role="group" aria-label="Filter projects">
+          <button v-for="filter in filters" :key="filter.id" type="button" class="project-filter" :class="{ active: activeFilter === filter.id }" :aria-pressed="activeFilter === filter.id" @click="activeFilter = filter.id">{{ filter.label }}</button>
+        </div>
+      </div>
+
       <div class="project-grid">
-        <div v-for="(p, i) in projects" :key="p.id"
+        <div v-for="(p, i) in visibleProjects" :key="p.id"
           class="project-cell fade-in"
+          :class="{ 'project-cell--live': p.category === 'live' }"
           :style="{ transitionDelay: i * 0.1 + 's' }"
           role="button"
           tabindex="0"
@@ -34,9 +55,14 @@
             </svg>
             <span style="position: absolute; top: 0.5rem; left: 0.5rem; font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted);">{{ p.id }}</span>
           </template>
+          <span class="project-cell__status">{{ p.status }}</span>
+          <div class="project-cell__caption">
+            <strong>{{ p.title }}</strong>
+            <span>{{ p.meta }}</span>
+          </div>
           <div class="photo-overlay" style="flex-direction: column; gap: 0.3rem;">
             <strong style="font-size: 0.85rem;">{{ p.title }}</strong>
-            <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--muted);">{{ p.meta }} — {{ p.status }}</span>
+            <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--muted);">{{ p.meta }}</span>
             <span class="case-study-trigger">View case study</span>
             <a v-if="p.live && p.live !== '#'" :href="p.live" target="_blank" rel="noopener noreferrer" class="live-demo-btn" @click.stop>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -96,13 +122,20 @@
 </template>
 
 <script setup>
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const el = ref(null)
 const dialog = ref(null)
 const closeButton = ref(null)
 const selectedProject = ref(null)
 const previousFocus = ref(null)
+const activeFilter = ref('all')
+
+const filters = [
+  { id: 'all', label: 'All work' },
+  { id: 'live', label: 'Live products' },
+  { id: 'systems', label: 'Systems' },
+]
 
 const skills = [
   { name: 'HTML', tag: 'Markup' },
@@ -118,48 +151,52 @@ const skills = [
 
 const projects = [
   {
-    id: '01', title: 'POS System', status: 'Portfolio project', meta: 'Kamog Sablan Multipurpose Cooperative', preview: '/KSMPC.png', live: '#',
+    id: '01', category: 'systems', title: 'POS System', status: 'Portfolio project', meta: 'Kamog Sablan Multipurpose Cooperative', preview: '/KSMPC.png', live: '#',
     description: 'A POS system project for Kamog Sablan Multipurpose Cooperative.',
     sourceLabel: 'Portfolio information',
     features: ['Point-of-sale interface', 'Cooperative project preview'],
     sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '02', title: 'School System', status: 'Portfolio project', meta: "San Luis King's Kids Christian Academy", preview: '/SLKKCA.png', live: '#',
+    id: '02', category: 'systems', title: 'School System', status: 'Portfolio project', meta: "San Luis King's Kids Christian Academy", preview: '/SLKKCA.png', live: '#',
     description: "A school system project for San Luis King's Kids Christian Academy.",
     sourceLabel: 'Portfolio information',
     features: ['School system interface', 'Education project preview'],
     sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '03', title: 'Birthing Home System', status: 'Portfolio project', meta: 'Bani Birthing Home', preview: '/Bani-Birthing-System.png', live: '#',
+    id: '03', category: 'systems', title: 'Birthing Home System', status: 'Portfolio project', meta: 'Bani Birthing Home', preview: '/Bani-Birthing-System.png', live: '#',
     description: 'A birthing home system project for Bani Birthing Home.',
     sourceLabel: 'Portfolio information',
     features: ['Birthing-home system interface', 'Healthcare project preview'],
     sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '04', title: 'EduPulse', status: 'Live product', meta: 'Gamified learning management system', preview: '/edupulse-live-preview.png', live: 'https://edupulse.koamishin.com',
+    id: '04', category: 'live', title: 'EduPulse', status: 'Live product', meta: 'Gamified learning management system', preview: '/edupulse-live-preview.png', live: 'https://edupulse.koamishin.com',
     sourceLabel: 'Verified from live website',
     description: 'A gamified learning platform where students learn, play, and achieve through lessons, missions, XP, rewards, and leaderboards.',
     features: ['XP and level system', 'Achievement badges', 'Interactive quizzes', 'Daily streaks and leaderboards', 'Built-in messenger', 'Analytics dashboard and teacher tools'],
     sourceNote: 'The public website describes EduPulse as a gamified learning management system for students and teachers, with 50 visual themes and workflows for quizzes, exams, practicals, and achievements.',
   },
   {
-    id: '05', title: 'ElyTrack', status: 'Live product', meta: 'School attendance and operations platform', preview: '/elytrack-live-preview.png', live: 'https://elytrack.elyxstudio.org',
+    id: '05', category: 'live', title: 'ElyTrack', status: 'Live product', meta: 'School attendance and operations platform', preview: '/elytrack-live-preview.png', live: 'https://elytrack.elyxstudio.org',
     sourceLabel: 'Verified from live website',
     description: 'A school attendance and operations platform for Philippine schools that replaces paper registers and fragile spreadsheets with standardized workflows.',
     features: ['Under-90-second daily roll call', 'Automated DepEd Form 2 calculations', 'SARDO early dropout alerts', '48-hour cutoff locks and audit logs', 'CSV learner masterlist ingestion', 'Isolated campus workspaces'],
     sourceNote: 'The public website identifies ElyTrack with DepEd Order No. 8, s. 2015 workflows, Philippine Data Privacy Act positioning, certified Excel SF2 export, and role-isolated school data.',
   },
   {
-    id: '06', title: 'ElWrite', status: 'Live product', meta: 'Digital identity and NFC profile platform', preview: '/elwrite-live-preview.png', live: 'https://elwrite.elyxstudio.org',
+    id: '06', category: 'live', title: 'ElWrite', status: 'Live product', meta: 'Digital identity and NFC profile platform', preview: '/elwrite-live-preview.png', live: 'https://elwrite.elyxstudio.org',
     sourceLabel: 'Verified from live website',
     description: 'A digital identity platform for creating polished personal profiles and NFC destinations for modern teams.',
     features: ['19 profile formats', 'Contactless web NFC sharing', 'iOS and Android support', 'Over-the-air profile updates', 'vCard 3.0 address book integration', 'NFC card pairing'],
     sourceNote: 'The public website describes ElWrite as a digital profile and NFC destination product with customizable formats, one reusable URL, and NTAG215 / 13.56 MHz NFC support.',
   },
 ]
+
+const visibleProjects = computed(() => activeFilter.value === 'all'
+  ? projects
+  : projects.filter(project => project.category === activeFilter.value))
 
 function openCaseStudy(project) {
   previousFocus.value = document.activeElement
