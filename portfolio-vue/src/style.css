@@ -418,13 +418,19 @@ a { color: inherit; text-decoration: none; }
   position: relative; overflow: hidden; cursor: pointer;
   transition: border-color 0.3s, transform 0.3s;
 }
-.project-cell:hover { border-color: var(--text); transform: scale(1.02); z-index: 2; box-shadow: 0 0 30px rgba(255,255,255,0.04); }
+.project-cell:hover, .project-cell:focus-visible { border-color: var(--text); transform: scale(1.02); z-index: 2; box-shadow: 0 0 30px rgba(255,255,255,0.04); }
+.project-cell:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
 .project-cell .photo-overlay {
   position: absolute; inset: 0; background: rgba(0,0,0,0.7);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.3s;
 }
-.project-cell:hover .photo-overlay { opacity: 1; }
+.project-cell:hover .photo-overlay, .project-cell:focus-visible .photo-overlay { opacity: 1; }
+
+.case-study-trigger {
+  color: var(--text); font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
 
 .project-cell__img {
   width: 100%; height: 100%; object-fit: cover;
@@ -438,6 +444,40 @@ a { color: inherit; text-decoration: none; }
   text-decoration: none; transition: background 0.3s, color 0.3s;
 }
 .live-demo-btn:hover { background: var(--amber); color: var(--bg); }
+
+/* ─── Project Case Study ─── */
+.case-study {
+  position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+  padding: 2rem; background: rgba(0,0,0,0.82); backdrop-filter: blur(12px);
+  animation: fadeIn 0.25s ease both;
+}
+.case-study__dialog {
+  width: min(980px, 100%); max-height: min(760px, calc(100vh - 4rem)); overflow-y: auto;
+  position: relative; display: grid; grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+  background: #0c0c0c; border: 1px solid #2b2b2b; border-radius: 14px; box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+  animation: scaleIn 0.3s ease both; scrollbar-color: #3a3a3a transparent;
+}
+.case-study__close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2; width: 2.2rem; height: 2.2rem;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; background: rgba(5,5,5,0.72);
+  color: var(--text); font-size: 1.5rem; line-height: 1; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.case-study__close:hover, .case-study__close:focus-visible { border-color: var(--amber); color: var(--amber); outline: none; }
+.case-study__preview { min-height: 100%; padding: 2rem; display: flex; align-items: center; background: linear-gradient(145deg, #151515, #090909); border-right: 1px solid var(--border); }
+.case-study__preview img { width: 100%; height: auto; max-height: 430px; object-fit: contain; border: 1px solid #2a2a2a; border-radius: 8px; filter: none; }
+.case-study__content { padding: 2.5rem 2.5rem 2rem; }
+.case-study__header { padding-right: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.4rem; }
+.case-study__eyebrow, .case-study__label { color: var(--amber); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.case-study__header h2 { margin: 0.45rem 0 0.2rem; color: var(--text); font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.7rem); font-weight: 400; line-height: 1; }
+.case-study__header p { color: var(--muted); font-size: 0.85rem; }
+.case-study__body { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1.25rem; padding: 1.5rem 0; }
+.case-study__body p, .case-study__body li { margin-top: 0.45rem; color: #c4c4c4; font-size: 0.8rem; line-height: 1.65; }
+.case-study__body ul { padding-left: 1rem; }
+.case-study__body li::marker { color: var(--accent); }
+.case-study__footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.case-study__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.case-study__tags span { padding: 0.3rem 0.55rem; border: 1px solid #343434; border-radius: 100px; color: #c4c4c4; font-family: var(--font-mono); font-size: 0.62rem; }
+.case-study__footer .live-demo-btn { flex-shrink: 0; margin-top: 0; }
 
 /* ─── Phone Mockup ─── */
 .phone-mock { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
@@ -576,6 +616,12 @@ a { color: inherit; text-decoration: none; }
   .design-cell { aspect-ratio: 2/3; }
   .project-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
   .project-cell { aspect-ratio: 3/2; }
+  .case-study { padding: 1rem; }
+  .case-study__dialog { grid-template-columns: 1fr; max-height: calc(100vh - 2rem); }
+  .case-study__preview { min-height: 0; padding: 1.5rem; border-right: 0; border-bottom: 1px solid var(--border); }
+  .case-study__preview img { max-height: 260px; }
+  .case-study__content { padding: 1.75rem 1.5rem 1.5rem; }
+  .case-study__body { gap: 1.2rem 1rem; }
   .contact__aside { grid-template-columns: 1fr; gap: 1.5rem; }
   .contact__footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   .nav-dots { right: 0.6rem; gap: 0.4rem; }
@@ -642,6 +688,15 @@ a { color: inherit; text-decoration: none; }
   .photo-cell .photo-overlay strong { font-size: 0.65rem; }
   .photo-cell .photo-overlay span { font-size: 0.5rem; }
   .project-cell { aspect-ratio: 3/2; }
+  .case-study { padding: 0.5rem; align-items: flex-start; }
+  .case-study__dialog { max-height: calc(100vh - 1rem); border-radius: 10px; }
+  .case-study__preview { padding: 1rem; }
+  .case-study__preview img { max-height: 190px; }
+  .case-study__content { padding: 1.5rem 1rem 1rem; }
+  .case-study__header h2 { font-size: 2.2rem; }
+  .case-study__body { grid-template-columns: 1fr; gap: 1rem; padding: 1.25rem 0; }
+  .case-study__footer { align-items: flex-start; flex-direction: column; }
+  .case-study__footer .live-demo-btn { width: 100%; justify-content: center; }
   .splash__light { display: none; }
   .splash__noise { background-size: 100px 100px; }
   .splash__title { gap: 0.15em !important; margin-bottom: 1rem; }
