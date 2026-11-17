@@ -36,7 +36,7 @@
           </template>
           <div class="photo-overlay" style="flex-direction: column; gap: 0.3rem;">
             <strong style="font-size: 0.85rem;">{{ p.title }}</strong>
-            <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--muted);">{{ p.meta }} — {{ p.year }}</span>
+            <span style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--muted);">{{ p.meta }} — {{ p.status }}</span>
             <span class="case-study-trigger">View case study</span>
             <a v-if="p.live && p.live !== '#'" :href="p.live" target="_blank" rel="noopener noreferrer" class="live-demo-btn" @click.stop>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -64,37 +64,28 @@
           </div>
           <div class="case-study__content">
             <header class="case-study__header">
-              <span class="case-study__eyebrow">{{ selectedProject.id }} / {{ selectedProject.year }}</span>
+              <span class="case-study__eyebrow">{{ selectedProject.id }} / {{ selectedProject.status }}</span>
               <h2 :id="`case-study-title-${selectedProject.id}`">{{ selectedProject.title }}</h2>
               <p>{{ selectedProject.meta }}</p>
             </header>
             <div class="case-study__body">
               <div>
-                <span class="case-study__label">The challenge</span>
-                <p>{{ selectedProject.challenge }}</p>
+                <span class="case-study__label">What it is</span>
+                <p>{{ selectedProject.description }}</p>
               </div>
               <div>
-                <span class="case-study__label">My role</span>
-                <p>{{ selectedProject.role }}</p>
-              </div>
-              <div>
-                <span class="case-study__label">Key features</span>
+                <span class="case-study__label">Public capabilities</span>
                 <ul>
                   <li v-for="feature in selectedProject.features" :key="feature">{{ feature }}</li>
                 </ul>
               </div>
               <div>
-                <span class="case-study__label">Outcome</span>
-                <p>{{ selectedProject.outcome }}</p>
+                <span class="case-study__label">Verified details</span>
+                <p>{{ selectedProject.sourceNote }}</p>
               </div>
             </div>
             <div class="case-study__footer">
-              <div class="case-study__stack">
-                <span class="case-study__label">Built with</span>
-                <div class="case-study__tags">
-                  <span v-for="technology in selectedProject.technologies" :key="technology">{{ technology }}</span>
-                </div>
-              </div>
+              <span class="case-study__source">{{ selectedProject.sourceLabel }}</span>
               <a v-if="selectedProject.live && selectedProject.live !== '#'" :href="selectedProject.live" target="_blank" rel="noopener noreferrer" class="live-demo-btn">Open live site ↗</a>
             </div>
           </div>
@@ -127,52 +118,46 @@ const skills = [
 
 const projects = [
   {
-    id: '01', title: 'POS System', year: '2026', meta: 'Kamog Sablan Multipurpose Cooperative', preview: '/KSMPC.png', live: '#',
-    challenge: 'Give a cooperative team a dependable way to manage daily sales, inventory, and customer transactions.',
-    role: 'End-to-end web development, interface design, and database integration.',
-    technologies: ['Vue', 'Laravel', 'MySQL'],
-    features: ['Fast point-of-sale workflow', 'Inventory and stock monitoring', 'Transaction records for reporting'],
-    outcome: 'A single workspace for daily operations that reduces manual tracking and keeps sales data organized.',
+    id: '01', title: 'POS System', status: 'Portfolio project', meta: 'Kamog Sablan Multipurpose Cooperative', preview: '/KSMPC.png', live: '#',
+    description: 'A POS system project for Kamog Sablan Multipurpose Cooperative.',
+    sourceLabel: 'Portfolio information',
+    features: ['Point-of-sale interface', 'Cooperative project preview'],
+    sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '02', title: 'School System', year: '2025', meta: "San Luis King's Kids Christian Academy", preview: '/SLKKCA.png', live: '#',
-    challenge: 'Bring student, class, and school administration workflows into one clear system.',
-    role: 'Product design and full-stack implementation for school operations.',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Laravel'],
-    features: ['Student information management', 'Academic record organization', 'Role-based administrative workflows'],
-    outcome: 'A more structured foundation for managing school information and reducing fragmented paperwork.',
+    id: '02', title: 'School System', status: 'Portfolio project', meta: "San Luis King's Kids Christian Academy", preview: '/SLKKCA.png', live: '#',
+    description: "A school system project for San Luis King's Kids Christian Academy.",
+    sourceLabel: 'Portfolio information',
+    features: ['School system interface', 'Education project preview'],
+    sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '03', title: 'Birthing Home System', year: '2026', meta: 'Bani Birthing Home', preview: '/Bani-Birthing-System.png', live: '#',
-    challenge: 'Make patient and birthing-home records easier to access while keeping sensitive information structured.',
-    role: 'Application design, workflow planning, and backend development.',
-    technologies: ['Vue', 'Laravel', 'MySQL'],
-    features: ['Patient record management', 'Organized visit and care details', 'Searchable operational records'],
-    outcome: 'A purpose-built system that gives staff a clearer view of patient information and daily care workflows.',
+    id: '03', title: 'Birthing Home System', status: 'Portfolio project', meta: 'Bani Birthing Home', preview: '/Bani-Birthing-System.png', live: '#',
+    description: 'A birthing home system project for Bani Birthing Home.',
+    sourceLabel: 'Portfolio information',
+    features: ['Birthing-home system interface', 'Healthcare project preview'],
+    sourceNote: 'This project does not currently have a public website linked from the portfolio. Detailed claims are intentionally limited until a public case study is available.',
   },
   {
-    id: '04', title: 'EduPulse', year: '2026', meta: 'Learning management platform', preview: '/edupulse-preview.svg', live: 'https://edupulse.koamishin.com',
-    challenge: 'Make learning progress and course activity easy to understand at a glance.',
-    role: 'Product design and web development focused on dashboard hierarchy and engagement.',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    features: ['Course progress tracking', 'Weekly learning activity', 'Lesson and study streak overview'],
-    outcome: 'A motivating learning dashboard that turns scattered activity into a focused, actionable overview.',
+    id: '04', title: 'EduPulse', status: 'Live product', meta: 'Gamified learning management system', preview: '/edupulse-live-preview.png', live: 'https://edupulse.koamishin.com',
+    sourceLabel: 'Verified from live website',
+    description: 'A gamified learning platform where students learn, play, and achieve through lessons, missions, XP, rewards, and leaderboards.',
+    features: ['XP and level system', 'Achievement badges', 'Interactive quizzes', 'Daily streaks and leaderboards', 'Built-in messenger', 'Analytics dashboard and teacher tools'],
+    sourceNote: 'The public website describes EduPulse as a gamified learning management system for students and teachers, with 50 visual themes and workflows for quizzes, exams, practicals, and achievements.',
   },
   {
-    id: '05', title: 'ElyTrack', year: '2026', meta: 'Delivery tracking dashboard', preview: '/elytrack-preview.svg', live: 'https://elytrack.elyxstudio.org',
-    challenge: 'Give operations teams a clear view of shipments, routes, and delivery status.',
-    role: 'Product design and web development for a real-time operations overview.',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    features: ['Live route visibility', 'Shipment status tracking', 'Delivery performance metrics'],
-    outcome: 'A control center that helps teams understand what is moving, what is delayed, and what needs attention.',
+    id: '05', title: 'ElyTrack', status: 'Live product', meta: 'School attendance and operations platform', preview: '/elytrack-live-preview.png', live: 'https://elytrack.elyxstudio.org',
+    sourceLabel: 'Verified from live website',
+    description: 'A school attendance and operations platform for Philippine schools that replaces paper registers and fragile spreadsheets with standardized workflows.',
+    features: ['Under-90-second daily roll call', 'Automated DepEd Form 2 calculations', 'SARDO early dropout alerts', '48-hour cutoff locks and audit logs', 'CSV learner masterlist ingestion', 'Isolated campus workspaces'],
+    sourceNote: 'The public website identifies ElyTrack with DepEd Order No. 8, s. 2015 workflows, Philippine Data Privacy Act positioning, certified Excel SF2 export, and role-isolated school data.',
   },
   {
-    id: '06', title: 'ELWrite', year: '2026', meta: 'Writing and publishing workspace', preview: '/elwrite-preview.svg', live: 'https://elwrite.elyxstudio.org',
-    challenge: 'Create a calm writing workspace that keeps attention on the content instead of the interface.',
-    role: 'Product design and frontend development for the editor and publishing flow.',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    features: ['Focused document editor', 'Personal document library', 'Simple publishing workflow'],
-    outcome: 'A quiet, approachable writing environment designed to help ideas move from draft to finished work.',
+    id: '06', title: 'ElWrite', status: 'Live product', meta: 'Digital identity and NFC profile platform', preview: '/elwrite-live-preview.png', live: 'https://elwrite.elyxstudio.org',
+    sourceLabel: 'Verified from live website',
+    description: 'A digital identity platform for creating polished personal profiles and NFC destinations for modern teams.',
+    features: ['19 profile formats', 'Contactless web NFC sharing', 'iOS and Android support', 'Over-the-air profile updates', 'vCard 3.0 address book integration', 'NFC card pairing'],
+    sourceNote: 'The public website describes ElWrite as a digital profile and NFC destination product with customizable formats, one reusable URL, and NTAG215 / 13.56 MHz NFC support.',
   },
 ]
 

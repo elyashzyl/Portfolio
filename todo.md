@@ -2,7 +2,7 @@
 
 ## Recommended update: Make the portfolio application-ready
 
-The portfolio now communicates the target role, availability, selected work, and contact path more clearly. The remaining items below require real career information or evidence before they should be added.
+The portfolio now communicates the target role, availability, selected work, and contact path more clearly. Live project descriptions and previews are based on the public websites. The remaining items below require real career information or evidence before they should be added.
 
 - [x] Add a clear target role and value proposition to the hero section.
 - [x] Add a hiring snapshot with role, location, availability, and email.
@@ -29,35 +29,37 @@ Upgrade the Recent Projects cards into short, interactive case studies. The curr
 ### Implementation plan
 
 - [x] Add structured case-study data to each project in `src/components/DevSection.vue`.
-- [x] Add project fields for overview/challenge, role, technologies, key features, and outcome.
+- [x] Use source-verified product descriptions and public capabilities for the live projects.
 - [x] Make each project card open a case-study modal.
 - [x] Add a clear close button, click-outside close, and keyboard `Escape` support.
 - [x] Keep the `Live Demo` button separate so it opens the external site in a new tab.
 - [x] Add accessible labels, focus states, focus return, and focus trapping for the modal.
 - [x] Add responsive layouts for the case-study content on tablet and mobile.
 - [x] Add case-study content for EduPulse, ElyTrack, ELWrite, and the existing projects.
+- [x] Replace invented project mockups with exact screenshots captured from the live websites.
+- [ ] Refresh live-site captures when the public products change.
 - [ ] Add additional project screenshots when they are available.
 - [ ] Test the interaction with mouse, keyboard, and touch devices.
 
-### Suggested case-study content
+### Source-verified live product notes
 
 #### EduPulse
 
-- Challenge: Make learning progress and course activity easy to understand.
-- Role: Product design and web development.
-- Focus: Dashboard hierarchy, progress tracking, and course engagement.
+- Gamified learning platform for students and teachers.
+- Public capabilities include XP and levels, achievement badges, quizzes, daily streaks, leaderboards, messaging, analytics, and teacher tools.
+- Public site positioning: Learn. Play. Achieve.
 
 #### ElyTrack
 
-- Challenge: Give operations teams a clear view of shipments and delivery status.
-- Role: Product design and web development.
-- Focus: Live route visibility, shipment status, and operational metrics.
+- School attendance and operations platform for Philippine schools.
+- Public capabilities include daily roll call, DepEd Form 2 calculations, SARDO alerts, audit logs, CSV learner ingestion, and isolated campus workspaces.
+- Public site references DepEd Order No. 8, s. 2015 and the Philippine Data Privacy Act.
 
-#### ELWrite
+#### ElWrite
 
-- Challenge: Create a calm writing workspace that keeps attention on the content.
-- Role: Product design and web development.
-- Focus: Editor usability, document organization, and publishing flow.
+- Digital identity and NFC profile platform for modern teams.
+- Public capabilities include 19 profile formats, web NFC sharing, iOS/Android support, profile updates, vCard integration, and NFC card pairing.
+- Public site positioning: digital profiles and NFC destinations.
 
 ### Definition of done
 

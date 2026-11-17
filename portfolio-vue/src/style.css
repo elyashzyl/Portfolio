@@ -442,8 +442,9 @@ a { color: inherit; text-decoration: none; }
 
 .project-cell__img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: blur(12px) brightness(0.3); transition: filter 0.8s ease, transform 0.6s ease;
+  filter: none; transition: transform 0.6s ease;
 }
+.project-cell:hover .project-cell__img, .project-cell:focus-visible .project-cell__img { transform: scale(1.03); }
 
 .live-demo-btn {
   display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;
@@ -485,6 +486,7 @@ a { color: inherit; text-decoration: none; }
 .case-study__footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
 .case-study__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
 .case-study__tags span { padding: 0.3rem 0.55rem; border: 1px solid #343434; border-radius: 100px; color: #c4c4c4; font-family: var(--font-mono); font-size: 0.62rem; }
+.case-study__source { color: var(--muted); font-family: var(--font-mono); font-size: 0.58rem; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.05em; }
 .case-study__footer .live-demo-btn { flex-shrink: 0; margin-top: 0; }
 
 /* ─── Phone Mockup ─── */
